@@ -53,6 +53,22 @@ app.post('/template', async(req: Request, res: Response) => {
     return;
   }
 })
+
+app.post("/chat", async (req, res) => {
+  const messages = req.body.messages;
+  const response = await anthropic.messages.create({
+    model: "grok-beta",
+    max_tokens: 8000,
+    system: getSystemPrompt(),
+    messages: messages,
+  })
+
+  console.log(response);
+
+  res.json({
+      response: (response.content[0] as TextBlock)?.text
+  });
+})
 app.listen(3000);
 // async function main() {
 //   anthropic.messages.stream({

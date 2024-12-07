@@ -30,8 +30,6 @@ const anthropic = new sdk_1.default({
 });
 app.post('/template', (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     const prompt = req.body.prompt;
-    console.log(prompt);
-    console.log(CLAUDE_API_KEY);
     const response = yield anthropic.messages.create({
         model: "grok-beta",
         max_tokens: 200,
@@ -61,6 +59,20 @@ app.post('/template', (req, res) => __awaiter(void 0, void 0, void 0, function* 
         });
         return;
     }
+}));
+app.post("/chat", (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    var _a;
+    const messages = req.body.messages;
+    const response = yield anthropic.messages.create({
+        model: "grok-beta",
+        max_tokens: 8000,
+        system: (0, prompts_1.getSystemPrompt)(),
+        messages: messages,
+    });
+    console.log(response);
+    res.json({
+        response: (_a = response.content[0]) === null || _a === void 0 ? void 0 : _a.text
+    });
 }));
 app.listen(3000);
 // async function main() {
