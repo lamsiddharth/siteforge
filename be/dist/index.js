@@ -61,7 +61,6 @@ app.post('/template', (req, res) => __awaiter(void 0, void 0, void 0, function* 
     }
 }));
 app.post("/chat", (req, res) => __awaiter(void 0, void 0, void 0, function* () {
-    var _a;
     const messages = req.body.messages;
     const response = yield anthropic.messages.create({
         model: "grok-beta",
@@ -71,7 +70,7 @@ app.post("/chat", (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     });
     console.log(response);
     res.json({
-        response: (_a = response.content[0]) === null || _a === void 0 ? void 0 : _a.text
+        response: response
     });
 }));
 app.listen(3000);

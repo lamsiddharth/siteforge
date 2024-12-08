@@ -66,7 +66,7 @@ app.post("/chat", async (req, res) => {
   console.log(response);
 
   res.json({
-      response: (response.content[0] as TextBlock)?.text
+      response: response
   });
 })
 app.listen(3000);
