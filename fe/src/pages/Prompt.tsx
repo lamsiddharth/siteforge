@@ -2,6 +2,8 @@ import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Wand2, Loader2, ArrowLeft } from 'lucide-react';
 import { Link } from 'react-router-dom';
+import { BACKEND_URL } from '../config';
+import axios from 'axios';
 
 export function Prompt() {
   const [prompt, setPrompt] = useState('');

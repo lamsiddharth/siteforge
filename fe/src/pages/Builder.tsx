@@ -171,7 +171,7 @@ export function Builder() {
     }))]);
 
     setLlmMessages([...prompts, prompt].map(content => ({
-      role: "user",
+       role: "user",
       content
     })));
 
